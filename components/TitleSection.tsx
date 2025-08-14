@@ -27,19 +27,19 @@ export default function TitleSection() {
     gsap.set(backgroundRef.current, {clipPath: "round 30px"});
 
     // Color change animation — from grey to dark as center approaches top
-    gsap.to(
-      sectionRef.current,
-      {
-        backgroundColor: "#2D2D2D",
-        ease: "none",
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top top", // when section center hits bottom
-          end: "center top",      // fully colored when center hits top
-          scrub: 1,
-        },
-      }
-    );
+    // gsap.to(
+    //   sectionRef.current,
+    //   {
+    //     backgroundColor: "#2D2D2D",
+    //     ease: "none",
+    //     scrollTrigger: {
+    //       trigger: sectionRef.current,
+    //       start: "top top", // when section center hits bottom
+    //       end: "center top",      // fully colored when center hits top
+    //       scrub: 1,
+    //     },
+    //   }
+    // );
 
     // Clip-path entrance with rounded corners
     mainTl.fromTo(
@@ -47,7 +47,13 @@ export default function TitleSection() {
       // We add "round 30px" to curve the corners
       { clipPath: "inset(55% 55% 55% 55% round 30px)" },
       { clipPath: "inset(0% 0% 0% 0%)", ease: "power2.out", duration: 0.5 }
-    );
+    ).set(
+      sectionRef.current,
+      {
+        backgroundColor: "#2D2D2D",
+        ease: "none",
+      }
+    )
 
     // Clip-path exit with rounded corners
     mainTl.to(

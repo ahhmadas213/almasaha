@@ -128,15 +128,6 @@ function Hero() {
               كيف ممكن فكرة بسيطة تغير احساس المكان بالكامل؟
             </p>
           </div>
-
-          <p 
-            ref={descriptionRef}
-            // CHANGE 3: `max-w-md` and `mx-auto` ensure the paragraph is centered and has a readable width.
-            className="text-base md:text-lg text-gray-600 leading-relaxed max-w-md mx-auto"
-            style={{ perspective: '800px' }}
-          >
-            العقل يخلق الجمال، القلب يخلق البيت، البيت الحلو البيت
-          </p>
         </div>
         
         <div 
@@ -157,11 +148,11 @@ function Hero() {
       {/* CHANGE 5: `min-h-[50vh]` gives the image a substantial height on mobile.
           `md:h-full` now works correctly because the parent <section> has `md:h-screen`. */}
       <div 
-        className="relative w-full md:w-1/2 min-h-[50vh] overflow-hidden md:h-full p-4 order-1 md:order-2"
+        className="relative w-full md:w-1/2 min-h-[50vh] overflow-hidden md:h-full p-4 order-1 md:order-2 rounded-2xl"
       >
         <Image
           ref={mainImageRef}
-          className='object-cover scale-125 opacity-0 rounded-2xl'
+          className='object-cover scale-125 opacity-0'
           fill
           alt='hero section image'
           src={"/images/hero-section-1.jpg"}

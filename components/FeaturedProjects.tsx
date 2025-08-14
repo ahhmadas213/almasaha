@@ -146,13 +146,7 @@ function ProjectSection() {
       // CHANGE 2: Adjusted padding for better spacing on mobile vs desktop.
       className="min-h-screen bg-almost_black flex px-4 md:px-6 py-12 flex-col justify-start text-white mx-auto"
     >
-      {/* CHANGE 3: Header layout is now responsive.
-          - `flex-col` stacks the title and filters on mobile.
-          - `md:flex-row` returns to the side-by-side layout on medium screens and up.
-          - `items-center` centers content on mobile.
-          - `md:justify-between` restores the original alignment on larger screens.
-          - `gap-8` adds space between the stacked title and filters.
-      */}
+      
       <div className="flex flex-col md:flex-row justify-center md:justify-between items-center mb-12 gap-8 md:gap-0">
         {/* CHANGE 4: Title font size is now responsive. */}
         <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-center md:text-right">مشاريع نفخر بها</h1>

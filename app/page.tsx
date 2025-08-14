@@ -6,11 +6,12 @@ import Footer from "@/components/Footer"
 import Hero from "@/components/Hero"
 import TitleSection from "@/components/TitleSection"
 import GallerySection from "@/components/GallerySection"
+import AboutSection from "@/components/AboutSection"
 // import HeroSection from "@/components/AnimatedHeroSection"
 
 export default function Home() {
   return (
-    <main>
+    <main className="overflow-hidden">
       {/* <Header /> */}
       <Hero/>
       {/* <AnimatedHeroSection/> */}
@@ -18,11 +19,13 @@ export default function Home() {
       
     
       <TitleSection />
-      <FeaturedProjects />
-      <section className="bg-white text-white py-16 h-screen w-full">
+      <GallerySection/>
 
-      </section>
-      {/* <GallerySection/> */}
+      <FeaturedProjects />
+      <AboutSection/>
+      {/* <section className="bg-white text-white py-16 h-screen w-full">
+
+      </section> */}
         {/* 
       <FeaturedProjects />
       <ContactCTA />
