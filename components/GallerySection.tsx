@@ -1,5 +1,5 @@
 'use client'
-import { useEffect } from "react"
+import { useEffect, useRef } from "react"
 import Link from "next/link"
 import { gsap } from "gsap"
 import { useGSAP } from "@gsap/react"
@@ -9,6 +9,9 @@ gsap.registerPlugin(ScrollTrigger)
 
 
 function GallerySection() {
+
+  const galleryRef = useRef(null)
+  const sectionRef = useRef(null)
   const generateRows = () => {
       const rows = [];
       for (let i = 1; i <= 3; i++) {
@@ -35,8 +38,25 @@ function GallerySection() {
       start: "top 25%",
       toggleActions: "play reverse play reverse",
       scrub: 1,
-      markers: true,
     }
+
+    
+    gsap.fromTo(
+      sectionRef.current,
+      { maxWidth: "100%", margin: "0 auto", borderRadius: "0px" },
+      {
+        maxWidth: "95%",
+        borderRadius: "30px",
+        ease: "power1.out",
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "bottom bottom",
+          end: "bottom top",
+          scrub: true,
+        },
+      }
+    );
+
 
     const leftXValues = [800, 900, 400];
     const rightXValues = [-800, -900, -400];
@@ -91,9 +111,8 @@ function GallerySection() {
   
 
   return (
-    <div dir="">
-
-      <section className="main relative bg-almost_black overflow-hidden w-screen h-[150vh] flex-col flex items-center justify-center">
+    <section ref={sectionRef}  className="w-full h-[150vh] bg-white">
+      <div ref={galleryRef} className="main relative bg-almost_black overflow-hidden w-screen h-full flex-col flex items-center justify-center">
       <div className="main-content">
 
         <div className="">
@@ -111,8 +130,8 @@ function GallerySection() {
       </div> 
 
       {generateRows()}
-      </section>
-    </div>
+      </div>
+    </section>
   )
 }
 export default GallerySection

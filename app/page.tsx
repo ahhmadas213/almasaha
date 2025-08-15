@@ -7,6 +7,8 @@ import Hero from "@/components/Hero"
 import TitleSection from "@/components/TitleSection"
 import GallerySection from "@/components/GallerySection"
 import AboutSection from "@/components/AboutSection"
+import OurServicesSection from "@/components/OurServicesSection"
+import ShrinkOnScroll from "@/components/ShrinkOnScroll"
 // import HeroSection from "@/components/AnimatedHeroSection"
 
 export default function Home() {
@@ -20,9 +22,13 @@ export default function Home() {
     
       <TitleSection />
       <GallerySection/>
+      <AboutSection/>
+      <OurServicesSection/>
 
       <FeaturedProjects />
-      <AboutSection/>
+      {/* <ShrinkOnScroll/> */}
+    
+      
       {/* <section className="bg-white text-white py-16 h-screen w-full">
 
       </section> */}

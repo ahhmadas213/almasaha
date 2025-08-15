@@ -3,6 +3,7 @@ import { useRef, useState } from "react";
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Image from "next/image";
 
 // This type definition is good practice when using TypeScript
 type HTMLDivElementRef = React.RefObject<HTMLDivElement>;
@@ -64,21 +65,34 @@ const categories = [
 
 function ProjectFeaturedCard({ title, description, imageUrl, index }) {
   const cardRef = useRef(null);
+  const imageRef = useRef(null);
 
   useGSAP(() => {
-    gsap.set(cardRef.current, { scale: 0.9, opacity: 0.5 });
-    gsap.to(cardRef.current, {
-      scale: 1,
-      opacity: 1,
-      duration: 0.8,
-      delay: index * 0.1,
-      ease: "power2.out",
-      scrollTrigger: {
-        trigger: cardRef.current,
-        start: "top 80%",
-        toggleActions: "play none none reverse"
-      }
-    });
+    // gsap.set(cardRef.current, { scale: 0.9, opacity: 0.5 });
+    // gsap.to(cardRef.current, {
+    //   scale: 1,
+    //   opacity: 1,
+    //   duration: 0.8,
+    //   delay: index * 0.1,
+    //   ease: "power2.out",
+    //   scrollTrigger: {
+    //     trigger: cardRef.current,
+    //     start: "top 80%",
+    //     toggleActions: "play none none reverse"
+    //   }
+    // });
+
+        gsap.to(imageRef.current, {
+          y: "40%",
+          ease: "none",
+          scrollTrigger: {
+            trigger: cardRef.current,
+            start: "top bottom",
+            end: "bottom top",
+            scrub: true,
+          },
+        });
+    
   }, { scope: cardRef });
 
   return (
@@ -89,14 +103,19 @@ function ProjectFeaturedCard({ title, description, imageUrl, index }) {
       // `lg:h-[85vh]` restores the large height for large screens only.
       className="relative rounded-2xl shadow-xl overflow-hidden h-96 lg:h-[85vh] group cursor-pointer hover:shadow-2xl transition-shadow duration-300"
     >
-      <div className="relative h-full overflow-hidden">
-        <img
-          src={imageUrl}
-          alt={title}
-          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-        />
+      <div className="relative w-full h-full overflow-hidden rounded-2xl">
+          <Image
+            ref={imageRef}
+            className="object-cover scale-[1.4]"
+            fill
+            alt="hero section image"
+            src={imageUrl}
+            priority
+            sizes="(max-width: 768px) 100vw, 50vw"
+          />
+
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
-      </div>
+        </div>  
 
       <div className="absolute bottom-0 left-0 right-0 p-4 md:p-6">
         <h3 className="text-xl md:text-2xl font-bold text-white mb-2 md:mb-3 text-right drop-shadow-lg">{title}</h3>
@@ -107,8 +126,13 @@ function ProjectFeaturedCard({ title, description, imageUrl, index }) {
 }
 
 function ProjectSection() {
+
+
   const [activeFilter, setActiveFilter] = useState("all");
   const sectionRef = useRef(null);
+
+
+
 
   const filteredProjects =
     activeFilter === "all"
