@@ -14,47 +14,34 @@ gsap.registerPlugin(ScrollTrigger);
 const projectsData = [
   {
     id: 1,
-    title: "فيلا عصرية بالرياض",
-    description: "تصميم داخلي راقي يجمع بين الأصالة والحداثة مع استخدام الألوان الدافئة والمواد الطبيعية",
-    imageUrl: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
-    category: "سكني"
+    title: "Modern Hospitality with a Sea View",
+    description: "A calm, contemporary suite inspired by the colors of sand and sea. Natural materials and soft details create a relaxing atmosphere with a layout that offers comfort and privacy.",
+    imageUrl: "/images/proj1.webp",
+    category: "Hospitality" // Changed to English for consistency
   },
   {
     id: 2,
-    title: "مكتب إداري فاخر",
-    description: "مساحة عمل عصرية تعكس الهوية المؤسسية مع توفير بيئة مريحة ومحفزة للإبداع",
-    imageUrl: "https://images.unsplash.com/photo-1497366216548-37526070297c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+    title: "تصميم مختلف، ملفت، ويترك بصمة",
+    description: "صممنا مجمعًا تجاريًا بهوية عصرية تلفت الأنظار، حيث كل زاوية، من الواجهة إلى التفاصيل الداخلية، مصممة لتكون مميزة وتضيف تجربة فريدة للزوار.",
+    imageUrl: "/images/proj2.webp",
     category: "تجاري"
   },
   {
     id: 3,
-    title: "مطعم تراثي معاصر",
-    description: "تصميم يحتفي بالتراث العربي الأصيل مع لمسة عصرية تخلق تجربة طعام لا تُنسى",
-    imageUrl: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
-    category: "ضيافة"
+    title: "مساحة عصرية بلمسة دافئة",
+    description: "صممنا مساحة في الرياض تعكس بساطة الطراز الحديث ودفء التفاصيل، مع دمج المعيشة والطعام بألوان هادئة ولمسات من الخشب لتعزيز الشعور بالراحة والفخامة.",
+    imageUrl: "/images/proj3.webp",
+    category: "سكني" // Category updated to match the description
   },
-    {
+  {
     id: 4,
-    title: "شقة عائلية دافئة",
-    description: "مساحة عائلية مريحة تتميز بالألوان الهادئة والإضاءة الطبيعية مع مساحات تخزين ذكية",
-    imageUrl: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
-    category: "سكني"
+    title: "متجر أزياء عصري",
+    description: "في قلب السيتي ووك، صممنا متجرًا لعلامة تجارية سعودية. يجمع التصميم بين البساطة والعصرية، حيث تعبر كل زاوية عن شخصية البراند بقوة.",
+    imageUrl: "/images/proj4.webp",
+    category: "تجاري" // Category updated to match the description
   },
-  {
-    id: 5,
-    title: "صالة عرض فنية",
-    description: "مساحة عرض فنية تبرز الأعمال الفنية مع إضاءة مدروسة وتصميم يركز على التفاصيل",
-    imageUrl: "https://images.unsplash.com/photo-1545558014-8692077e9b5c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
-    category: "تجاري"
-  },
-  {
-    id: 6,
-    title: "فندق بوتيكي راقي",
-    description: "تصميم فندقي يجمع بين الفخامة والراحة مع عناصر تراثية معاصرة",
-    imageUrl: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
-    category: "ضيافة"
-  }
 ];
+
 
 const categories = [
   { id: "all", name: "جميع المشاريع" },
@@ -63,63 +50,60 @@ const categories = [
   { id: "ضيافة", name: "ضيافة" }
 ];
 
-function ProjectFeaturedCard({ title, description, imageUrl, index }) {
+
+type ProjectFeaturedCardProps = {
+  title: string;
+  description: string;
+  imageUrl: string;
+  index: number;
+};
+
+function ProjectFeaturedCard({ title, description, imageUrl, index }: ProjectFeaturedCardProps) {
   const cardRef = useRef(null);
   const imageRef = useRef(null);
 
   useGSAP(() => {
-    // gsap.set(cardRef.current, { scale: 0.9, opacity: 0.5 });
-    // gsap.to(cardRef.current, {
-    //   scale: 1,
-    //   opacity: 1,
-    //   duration: 0.8,
-    //   delay: index * 0.1,
-    //   ease: "power2.out",
-    //   scrollTrigger: {
-    //     trigger: cardRef.current,
-    //     start: "top 80%",
-    //     toggleActions: "play none none reverse"
-    //   }
-    // });
-
-        gsap.to(imageRef.current, {
-          y: "40%",
-          ease: "none",
-          scrollTrigger: {
-            trigger: cardRef.current,
-            start: "top bottom",
-            end: "bottom top",
-            scrub: true,
-          },
-        });
-    
+    gsap.to(imageRef.current, {
+      y: "40%",
+      ease: "none",
+      scrollTrigger: {
+        trigger: cardRef.current,
+        start: "top bottom",
+        end: "bottom top",
+        scrub: true,
+      },
+    });
   }, { scope: cardRef });
 
   return (
     <div
       ref={cardRef}
-      // CHANGE 1: Card height is now responsive.
-      // `h-96` (a fixed height) for mobile screens.
-      // `lg:h-[85vh]` restores the large height for large screens only.
       className="relative rounded-2xl shadow-xl overflow-hidden h-96 lg:h-[85vh] group cursor-pointer hover:shadow-2xl transition-shadow duration-300"
     >
       <div className="relative w-full h-full overflow-hidden rounded-2xl">
-          <Image
-            ref={imageRef}
-            className="object-cover scale-[1.4]"
-            fill
-            alt="hero section image"
-            src={imageUrl}
-            priority
-            sizes="(max-width: 768px) 100vw, 50vw"
-          />
+        <Image
+          ref={imageRef}
+          className="object-cover scale-[1.4]"
+          fill
+          alt={title} // Use the title for a more descriptive alt text
+          src={imageUrl}
+          priority
+          sizes="(max-width: 768px) 100vw, 50vw"
+        />
+        {/* Gradient overlay to ensure text is always readable */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
+      </div>  
 
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
-        </div>  
-
-      <div className="absolute bottom-0 left-0 right-0 p-4 md:p-6">
-        <h3 className="text-xl md:text-2xl font-bold text-white mb-2 md:mb-3 text-right drop-shadow-lg">{title}</h3>
-        <p className="text-white/90 text-sm leading-relaxed text-right line-clamp-2 drop-shadow-md">{description}</p>
+      {/* --- MODIFIED TEXT CONTAINER --- */}
+      <div className="absolute bottom-0 left-0 right-0 p-4 md:p-6 text-right">
+        {/* Title remains visible */}
+        <h3 className="text-xl md:text-2xl font-bold text-white mb-1 drop-shadow-lg transition-transform duration-300 ease-in-out group-hover:-translate-y-1">
+          {title}
+        </h3>
+        {/* Description is now hidden by default and appears on hover */}
+        <p className="text-white/90 text-sm leading-relaxed drop-shadow-md transition-all duration-300 ease-in-out opacity-0 max-h-0 group-hover:opacity-100 group-hover:max-h-40">
+          {description}
+        </p>
       </div>
     </div>
   );
@@ -129,7 +113,7 @@ function ProjectSection() {
 
 
   const [activeFilter, setActiveFilter] = useState("all");
-  const sectionRef = useRef(null);
+  const sectionRef = useRef<HTMLDivElement>(null);
 
 
 
@@ -140,12 +124,15 @@ function ProjectSection() {
       : projectsData.filter((project) => project.category === activeFilter);
 
   useGSAP(() => {
-     gsap.from(sectionRef.current?.querySelector("h1"), {
-      y: 30,
-      opacity: 0,
-      duration: 0.8,
-      ease: "power3.out",
-    });
+    const h1 = sectionRef.current?.querySelector("h1");
+    if (h1) {
+      gsap.from(h1, {
+        y: 30,
+        opacity: 0,
+        duration: 0.8,
+        ease: "power3.out",
+      });
+    }
 
     gsap.fromTo(
       sectionRef.current,

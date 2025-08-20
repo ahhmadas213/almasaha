@@ -23,25 +23,25 @@ const ArrowDownIcon = () => (
 const services = [
   {
     image:
-      "https://images.unsplash.com/photo-1560518883-ce09059ee44a?auto=format&fit=crop&w=1974&q=80",
+      "/images/gallery1.jpg",
     title: "بناء هوية",
     tag: null,
   },
   {
     image:
-      "https://images.unsplash.com/photo-1583608205776-bfd35f0d9f83?auto=format&fit=crop&w=2070&q=80",
+      "/images/gallery2.jpg",
     title: "تصميم داخلي",
     tag: "04",
   },
   {
     image:
-      "https://images.unsplash.com/photo-1613946394539-334421b831f2?auto=format&fit=crop&w=1974&q=80",
+      "/images/gallery3.jpg",
     title: "تأثيث",
     tag: "04",
   },
   {
     image:
-      "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=2070&q=80",
+      "/images/gallery4.jpg",
     title: "دورات تدريبية",
     tag: "04",
   },
@@ -49,7 +49,7 @@ const services = [
 
 function OurServicesSection() {
   const sectionRef = useRef(null);
-  const itemsRef = useRef([]);
+  const itemsRef = useRef<Array<HTMLDivElement | null>>([]);
 
   useGSAP(() => {
     gsap.set(itemsRef.current, {
@@ -66,7 +66,7 @@ function OurServicesSection() {
       stagger: 0.15,
       scrollTrigger: {
         trigger: sectionRef.current,
-        start: "top 70%", // when section hits 70% viewport height
+        start: "top bottom", // when section hits 70% viewport height
         once: true, // run only once
       },
     });
@@ -75,7 +75,7 @@ function OurServicesSection() {
   return (
     <section
       ref={sectionRef}
-      className="relative flex flex-col w-full min-h-screen bg-almost_black text-white overflow-hidden"
+      className="relative flex flex-col w-full  bg-almost_black text-white overflow-hidden"
     >
       <div className="relative flex flex-col md:flex-row w-full">
         {/* Left Column */}
@@ -84,7 +84,7 @@ function OurServicesSection() {
             خدمات المساحة… لمسات إبداعية تحوّل أفكارك إلى واقع يعكس شخصيتك ويلهم من حولك.
           </h2>
           <a href="#" className="text-gray-400 mt-6 text-lg flex items-center">
-            <span className="mr-2 text-xl">•</span> Explore More &rarr;
+            اكتشف المزيد &rarr;
           </a>
         </div>
 
@@ -94,7 +94,7 @@ function OurServicesSection() {
             {services.map((service, index) => (
               <div
                 key={index}
-                ref={(el) => (itemsRef.current[index] = el)}
+                ref={(el) => { itemsRef.current[index] = el; }}
                 className="bg-white rounded-full p-4 flex items-center justify-between w-full shadow-lg"
                 style={{ width: "80px" }}
               >

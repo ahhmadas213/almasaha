@@ -8,9 +8,8 @@ import HeaderMenu from "@/components/HeaderMenu"
 import Link from "next/link";
 gsap.registerPlugin(Flip)
 
-export default function Header() {
+export default function MainHeader() {
   const headerRef = useRef(null)
-  const [isOpen, setIsOpen] = useState(false)
 
   useGSAP(() => {
 
@@ -25,7 +24,7 @@ export default function Header() {
   })
 
   return (
-    <header ref={headerRef} className="absolute top-0 left-0 w-full  right-0 z-50">
+    <header ref={headerRef} className="absolute top-0 left-0 w-full md:w-1/2  right-0 z-50">
       <div className="mx-auto px-6 py-4 ">
         <div className="flex items-center justify-between">
 

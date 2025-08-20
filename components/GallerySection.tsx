@@ -41,17 +41,16 @@ function GallerySection() {
     }
 
     
-    gsap.fromTo(
-      sectionRef.current,
-      { maxWidth: "100%", margin: "0 auto", borderRadius: "0px" },
+    gsap.to(
+      galleryRef.current,
       {
-        maxWidth: "95%",
-        borderRadius: "30px",
-        ease: "power1.out",
+        scale: 0.8,
+        ease: "none",
+        borderRadius: "50px",
         scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "bottom bottom",
-          end: "bottom top",
+          trigger: galleryRef.current,
+          start: "bottom bottom", // starts when bottom hits bottom of viewport
+          end: "bottom 50%",      // bottom reaches halfway
           scrub: true,
         },
       }
@@ -72,7 +71,7 @@ function GallerySection() {
         x: leftXValues[index],  
         scrollTrigger: {
           trigger: ".main",
-          start: "top center",
+          start: "top 80%",
           end: "150% bottom",
           scrub: true,
 
@@ -111,8 +110,8 @@ function GallerySection() {
   
 
   return (
-    <section ref={sectionRef}  className="w-full h-[150vh] bg-white">
-      <div ref={galleryRef} className="main relative bg-almost_black overflow-hidden w-screen h-full flex-col flex items-center justify-center">
+    // <section ref={sectionRef} className="w-full  z-1 bg-white">
+      <div ref={galleryRef} className="main h-[150vh] z-1 relative bg-almost_black overflow-hidden w-screen  flex-col flex items-center justify-center">
       <div className="main-content">
 
         <div className="">
@@ -131,7 +130,7 @@ function GallerySection() {
 
       {generateRows()}
       </div>
-    </section>
+    // </section>
   )
 }
 export default GallerySection

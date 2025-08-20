@@ -2,40 +2,27 @@ import Header from "@/components/Header"
 // import HeroSection from "@/components/HeroSection"
 import FeaturedProjects from "@/components/FeaturedProjects"
 import ContactCTA from "@/components/ContactCTA"
-import Footer from "@/components/Footer"
 import Hero from "@/components/Hero"
 import TitleSection from "@/components/TitleSection"
 import GallerySection from "@/components/GallerySection"
 import AboutSection from "@/components/AboutSection"
 import OurServicesSection from "@/components/OurServicesSection"
-import ShrinkOnScroll from "@/components/ShrinkOnScroll"
-// import HeroSection from "@/components/AnimatedHeroSection"
+import MainHeader from "@/components/MainHeader"
+
 
 export default function Home() {
   return (
-    <main className="overflow-hidden">
-      {/* <Header /> */}
+    <main className="overflow-hidden h-fit py-20 md:py-0">
+      <MainHeader/>
       <Hero/>
-      {/* <AnimatedHeroSection/> */}
-      {/* <HeroSection /> */}
-      
     
       <TitleSection />
       <GallerySection/>
       <AboutSection/>
       <OurServicesSection/>
 
-      <FeaturedProjects />
-      {/* <ShrinkOnScroll/> */}
-    
+      <FeaturedProjects />    
       
-      {/* <section className="bg-white text-white py-16 h-screen w-full">
-
-      </section> */}
-        {/* 
-      <FeaturedProjects />
-      <ContactCTA />
-      <Footer /> */}
     </main>
   )
 }

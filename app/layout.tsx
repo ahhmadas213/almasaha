@@ -2,6 +2,7 @@ import type React from "react"
 import type { Metadata } from "next"
 import { Cairo } from "next/font/google"
 import "./globals.css"
+import Footer from "@/components/Footer"
 
 const cairo = Cairo({
   subsets: ["arabic", "latin"],
@@ -24,7 +25,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ar" dir="rtl" className={cairo.variable}>
-      <body className={`font-cairo antialiased bg-white`}>{children}</body>
+      <body className={`font-cairo antialiased bg-white`}>
+        <main className="">
+        {children}
+        </main>
+        <Footer />
+        </body>
+
     </html>
   )
 }
